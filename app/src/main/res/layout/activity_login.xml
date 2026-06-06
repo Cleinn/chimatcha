@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="65dp"
+        android:paddingTop="90dp"
         android:paddingStart="28dp"
         android:paddingEnd="28dp"
         android:paddingBottom="28dp">
@@ -21,14 +21,15 @@
             android:text="Welcome To\nChi Matcha!"
             android:fontFamily="@font/montaga_regular"
             android:textColor="@color/chimatcha_text_white"
-            android:textSize="36sp"
-            android:layout_marginBottom="36dp" />
+            android:textSize="48sp"
+            android:layout_marginBottom="60dp"
+            android:lineHeight="43sp"/>
 
         <!-- Username/Email Field -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/input_bg">
 
             <ImageView
@@ -43,15 +44,15 @@
                 android:id="@+id/emailInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@null"
+                android:fontFamily="@font/montserrat_medium"
                 android:hint="@string/username_hint"
                 android:inputType="textEmailAddress"
-                android:background="@null"
                 android:paddingStart="48dp"
                 android:paddingEnd="16dp"
                 android:textColor="#333333"
                 android:textColorHint="@color/chimatcha_text_hint"
-                android:textSize="15sp"
-                android:fontFamily="@font/montserrat_medium"/>
+                android:textSize="15sp" />
 
         </RelativeLayout>
 
@@ -106,18 +107,20 @@
             android:text="Forgot Password?"
             android:textColor="@color/chimatcha_primary"
             android:textSize="12sp"
-            android:layout_marginBottom="28dp" />
+            android:layout_marginBottom="38dp" />
 
         <!-- Login Button -->
         <Button
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="54dp"
+            android:textAllCaps="false"
             android:text="Login"
             android:textColor="@color/white"
             android:textSize="17sp"
+            android:fontFamily="@font/montserrat_semibold"
             android:background="@drawable/btn_primary"
-            android:layout_marginBottom="32dp" />
+            android:layout_marginBottom="84dp" />
 
         <!-- OR Continue with -->
         <TextView

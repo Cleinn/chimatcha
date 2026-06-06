@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/chimatcha_bg"
@@ -10,113 +9,168 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="28dp"
-        android:paddingTop="60dp">
+        android:paddingTop="65dp"
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp"
+        android:paddingBottom="28dp">
 
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Create an\naccount"
+            android:fontFamily="@font/montaga_regular"
             android:textColor="@color/chimatcha_text_white"
-            android:textSize="36sp"
-            android:fontFamily="serif"
+            android:textSize="48sp"
+            android:lineHeight="43sp"
             android:layout_marginBottom="36dp" />
 
-        <!-- Username/Email Field -->
-        <com.google.android.material.textfield.TextInputLayout
+        <!-- Username Field -->
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            android:layout_height="56dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/input_bg">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_person"
+                android:layout_alignParentStart="true" />
+
+            <EditText
                 android:id="@+id/usernameInput"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:hint="@string/username_hint"
+                android:layout_height="match_parent"
+                android:hint="Username or Email"
                 android:inputType="text"
-                android:background="@drawable/input_bg"
-                android:paddingStart="50dp"
+                android:background="@null"
+                android:paddingStart="48dp"
                 android:paddingEnd="16dp"
                 android:textColor="#333333"
                 android:textColorHint="@color/chimatcha_text_hint"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:fontFamily="@font/montserrat_medium" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
 
         <!-- Password Field -->
-        <com.google.android.material.textfield.TextInputLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:passwordToggleEnabled="true">
+            android:layout_height="56dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/input_bg">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_lock"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/passwordToggle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_eye"
+                android:layout_alignParentEnd="true"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <EditText
                 android:id="@+id/passwordInput"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:hint="@string/password_hint"
+                android:layout_height="match_parent"
+                android:hint="Password"
                 android:inputType="textPassword"
-                android:background="@drawable/input_bg"
-                android:paddingStart="50dp"
-                android:paddingEnd="16dp"
+                android:background="@null"
+                android:paddingStart="48dp"
+                android:paddingEnd="48dp"
                 android:textColor="#333333"
                 android:textColorHint="@color/chimatcha_text_hint"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:fontFamily="@font/montserrat_medium" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
 
         <!-- Confirm Password Field -->
-        <com.google.android.material.textfield.TextInputLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:passwordToggleEnabled="true">
+            android:layout_height="56dp"
+            android:layout_marginBottom="22dp"
+            android:background="@drawable/input_bg">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_lock"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/confirmPasswordToggle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_eye"
+                android:layout_alignParentEnd="true"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <EditText
                 android:id="@+id/confirmPasswordInput"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:hint="@string/confirm_password_hint"
+                android:layout_height="match_parent"
+                android:hint="Confirm Password"
                 android:inputType="textPassword"
-                android:background="@drawable/input_bg"
-                android:paddingStart="50dp"
-                android:paddingEnd="16dp"
+                android:background="@null"
+                android:paddingStart="48dp"
+                android:paddingEnd="48dp"
                 android:textColor="#333333"
                 android:textColorHint="@color/chimatcha_text_hint"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:fontFamily="@font/montserrat_medium"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+        </RelativeLayout>
 
         <!-- Terms text -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="By clicking the Register button, you agree\nto the public offer"
-            android:textColor="#AAAAAA"
+            android:textColor="#676767"
             android:textSize="12sp"
+            android:paddingStart="10sp"
+            android:fontFamily="@font/montserrat_medium"
             android:layout_marginBottom="24dp" />
 
         <!-- Register Button -->
+
+        <!-- OR Continue with -->
         <Button
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:text="@string/register_btn"
-            android:textColor="@color/white"
-            android:textSize="17sp"
+            android:layout_marginBottom="84dp"
             android:background="@drawable/btn_primary"
-            android:layout_marginBottom="28dp" />
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Create Account"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
 
-        <!-- OR Continue with -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/or_continue"
+            android:text="OR Continue with"
             android:textColor="#AAAAAA"
             android:textSize="13sp"
             android:layout_marginBottom="16dp" />
