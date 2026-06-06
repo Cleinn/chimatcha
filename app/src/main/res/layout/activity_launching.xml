@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- Full screen background photo (unsplash_fouVDmGXoPI) -->
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/unsplash_bg"
+        android:scaleType="centerCrop" />
+
+    <!-- Dark gradient overlay (Rectangle_1) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="750dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/launching_gradient" />
+
+    <!-- Bottom content area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:paddingBottom="48dp">
+
+        <!-- Main headline -->
+        <TextView
+            android:id="@+id/headlineText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Everytime and\nEverywhere For\nYour Day"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:fontFamily="@font/montaga_regular"
+            android:gravity="center"
+            android:layout_marginBottom="28dp" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/subtitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The Elegant Taste Of Match"
+            android:textColor="#CCCCCC"
+            android:textSize="14sp"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:layout_marginBottom="42dp" />
+
+        <!-- Get Started Button -->
+        <Button
+            android:textAllCaps="false"
+            android:id="@+id/getStartedButton"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="Get Started"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:background="@drawable/btn_primary" />
+
+    </LinearLayout>
+
+</FrameLayout>
