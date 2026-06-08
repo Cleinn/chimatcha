@@ -46,6 +46,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".ProductDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
         <activity android:name=".BranchActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

@@ -1,6 +1,7 @@
 package com.example.chimatcha;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,16 @@ public class BestSellingAdapter extends RecyclerView.Adapter<BestSellingAdapter.
         holder.productDesc.setText(product.description);
         holder.productPrice.setText(product.price);
         holder.reviewCount.setText(String.valueOf(product.reviews));
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ProductDetailActivity.class);
+            intent.putExtra(ProductDetailActivity.EXTRA_NAME, product.name);
+            intent.putExtra(ProductDetailActivity.EXTRA_DESC, product.description);
+            intent.putExtra(ProductDetailActivity.EXTRA_PRICE, product.price);
+            intent.putExtra(ProductDetailActivity.EXTRA_IMAGE, product.imageRes);
+            intent.putExtra(ProductDetailActivity.EXTRA_REVIEWS, product.reviews);
+            context.startActivity(intent);
+        });
     }
 
     @Override
