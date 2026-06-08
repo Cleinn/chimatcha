@@ -49,6 +49,7 @@ public class HomeActivity extends AppCompatActivity {
         setupDropdown();
         setupCarousel();
         setupBestSelling();
+        setupReputation();  // <-- NEW
     }
 
     private void setupDropdown() {
@@ -59,7 +60,6 @@ public class HomeActivity extends AppCompatActivity {
         LinearLayout menuBranch = findViewById(R.id.menuBranch);
         LinearLayout menuLogout = findViewById(R.id.menuLogout);
 
-        // Toggle dropdown on hamburger click
         hamburgerButton.setOnClickListener(v -> {
             if (isDropdownOpen) {
                 closeDropdown();
@@ -68,10 +68,8 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        // Home — close dropdown
         menuHome.setOnClickListener(v -> closeDropdown());
 
-        // Menu — TODO: navigate to menu page
         menuItems.setOnClickListener(v -> {
             closeDropdown();
             Intent intent = new Intent(HomeActivity.this, ProductActivity.class);
@@ -84,7 +82,6 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Log Out
         menuLogout.setOnClickListener(v -> {
             closeDropdown();
             AppGlobals.loggedInUsername = "";
@@ -198,6 +195,22 @@ public class HomeActivity extends AppCompatActivity {
         products.add(new Product("Matcha Latte", "Smooth matcha with creamy milk.", "Rp.22.000", R.drawable.product_matchalatte, 27500));
 
         BestSellingAdapter adapter = new BestSellingAdapter(this, products);
+        recyclerView.setAdapter(adapter);
+    }
+
+    // ===== NEW: Our Reputation Section =====
+    private void setupReputation() {
+        RecyclerView recyclerView = findViewById(R.id.reputationRecycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        List<ReviewAdapter.Review> reviews = new ArrayList<>();
+        reviews.add(new ReviewAdapter.Review("Akila",   "2w", 5, "So goooood"));
+        reviews.add(new ReviewAdapter.Review("Mia",     "3w", 5, "Very refreshing! The Mango Matcha is my absolute favorite."));
+        reviews.add(new ReviewAdapter.Review("Rafi",    "1mo", 4, "Great taste and fast delivery. Will order again!"));
+        reviews.add(new ReviewAdapter.Review("Sari",    "1mo", 5, "Best matcha drink I've ever had. Highly recommended!"));
+        reviews.add(new ReviewAdapter.Review("Dion",    "2mo", 4, "Love the StrawMatcha combo. Really unique flavor."));
+
+        ReviewAdapter adapter = new ReviewAdapter(this, reviews);
         recyclerView.setAdapter(adapter);
     }
 
