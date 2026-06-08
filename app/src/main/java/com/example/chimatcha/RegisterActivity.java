@@ -8,6 +8,7 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -32,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         Button registerButton = findViewById(R.id.registerButton);
         TextView loginText = findViewById(R.id.loginText);
         EditText usernameInput = findViewById(R.id.usernameInput);
+        EditText emailInput = findViewById(R.id.emailInput);
         EditText passwordInput = findViewById(R.id.passwordInput);
         EditText confirmPasswordInput = findViewById(R.id.confirmPasswordInput);
         ImageView passwordToggle = findViewById(R.id.passwordToggle);
@@ -42,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPasswordInput.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         // Underline "Login" link
-        SpannableString loginSpan = new SpannableString(" Login");
+        SpannableString loginSpan = new SpannableString("Login");
         loginSpan.setSpan(new UnderlineSpan(), 0, loginSpan.length(), 0);
         loginText.setText(loginSpan);
 
@@ -88,11 +90,13 @@ public class RegisterActivity extends AppCompatActivity {
         // Register button — validate then proceed
         registerButton.setOnClickListener(v -> {
             String username = usernameInput.getText().toString().trim();
+            String email = emailInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
             String confirmPassword = confirmPasswordInput.getText().toString().trim();
             boolean valid = true;
 
             usernameInput.setError(null);
+            emailInput.setError(null);
             passwordInput.setError(null);
             confirmPasswordInput.setError(null);
 
@@ -101,6 +105,14 @@ public class RegisterActivity extends AppCompatActivity {
                 valid = false;
             } else if (username.length() <= 6) {
                 usernameInput.setError("Username must be longer than 6 characters");
+                valid = false;
+            }
+
+            if (email.isEmpty()) {
+                emailInput.setError("Email must be filled");
+                valid = false;
+            } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                emailInput.setError("Enter a valid email address");
                 valid = false;
             }
 

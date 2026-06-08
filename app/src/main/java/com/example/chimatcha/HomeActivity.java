@@ -74,8 +74,8 @@ public class HomeActivity extends AppCompatActivity {
         // Menu — TODO: navigate to menu page
         menuItems.setOnClickListener(v -> {
             closeDropdown();
-            // Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
-            // startActivity(intent);
+            Intent intent = new Intent(HomeActivity.this, ProductActivity.class);
+            startActivity(intent);
         });
 
         menuBranch.setOnClickListener(v -> {

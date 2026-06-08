@@ -14,6 +14,7 @@
         android:paddingEnd="28dp"
         android:paddingBottom="28dp">
 
+        <!-- Title -->
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
@@ -29,7 +30,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/input_bg">
 
             <ImageView
@@ -44,8 +45,39 @@
                 android:id="@+id/usernameInput"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Username or Email"
+                android:hint="Username"
                 android:inputType="text"
+                android:background="@null"
+                android:paddingStart="48dp"
+                android:paddingEnd="16dp"
+                android:textColor="#333333"
+                android:textColorHint="@color/chimatcha_text_hint"
+                android:textSize="15sp"
+                android:fontFamily="@font/montserrat_medium" />
+
+        </RelativeLayout>
+
+        <!-- Email Field -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/input_bg">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_person"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:id="@+id/emailInput"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
                 android:background="@null"
                 android:paddingStart="48dp"
                 android:paddingEnd="16dp"
@@ -60,7 +92,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/input_bg">
 
             <ImageView
@@ -102,7 +134,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginBottom="22dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/input_bg">
 
             <ImageView
@@ -136,29 +168,26 @@
                 android:textColor="#333333"
                 android:textColorHint="@color/chimatcha_text_hint"
                 android:textSize="15sp"
-                android:fontFamily="@font/montserrat_medium"/>
+                android:fontFamily="@font/montserrat_medium" />
 
         </RelativeLayout>
 
-        <!-- Terms text -->
+        <!-- Terms text with bold colored "Register" -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="By clicking the Register button, you agree\nto the public offer"
             android:textColor="#676767"
             android:textSize="12sp"
-            android:paddingStart="10sp"
-            android:fontFamily="@font/montserrat_medium"
-            android:layout_marginBottom="24dp" />
+            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginBottom="20dp" />
 
-        <!-- Register Button -->
-
-        <!-- OR Continue with -->
+        <!-- Create Account Button -->
         <Button
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="54dp"
-            android:layout_marginBottom="84dp"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/btn_primary"
             android:fontFamily="@font/montserrat_semibold"
             android:text="Create Account"
@@ -166,6 +195,7 @@
             android:textColor="@color/white"
             android:textSize="17sp" />
 
+        <!-- OR Continue with -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -221,18 +251,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="I Already Have an Account"
+                android:text="I Already Have an Account "
                 android:textColor="#AAAAAA"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:fontFamily="@font/montserrat_regular" />
 
             <TextView
                 android:id="@+id/loginText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Login"
+                android:text="Login"
                 android:textColor="@color/chimatcha_primary"
                 android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
         </LinearLayout>
 

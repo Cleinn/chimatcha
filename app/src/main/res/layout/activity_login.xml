@@ -23,7 +23,7 @@
             android:textColor="@color/chimatcha_text_white"
             android:textSize="48sp"
             android:layout_marginBottom="60dp"
-            android:lineHeight="43sp"/>
+            android:lineHeight="48sp"/>
 
         <!-- Username/Email Field -->
         <RelativeLayout

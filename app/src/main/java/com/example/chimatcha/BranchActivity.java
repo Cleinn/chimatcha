@@ -1,12 +1,16 @@
 package com.example.chimatcha;
 
+import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +22,99 @@ public class BranchActivity extends AppCompatActivity {
 
     private BranchAdapter adapter;
     private TextView noResultsText;
+    private ImageButton hamburgerButton;
+    private LinearLayout dropdownMenu;
+    private boolean isDropdownOpen = false;
+
+    private void setupDropdown() {
+        hamburgerButton = findViewById(R.id.hamburgerButton);
+        dropdownMenu = findViewById(R.id.dropdownMenu);
+        LinearLayout menuHome = findViewById(R.id.menuHome);
+        LinearLayout menuItems = findViewById(R.id.menuItems);
+        LinearLayout menuBranch = findViewById(R.id.menuBranch);
+        LinearLayout menuLogout = findViewById(R.id.menuLogout);
+
+        // Toggle dropdown on hamburger click
+        hamburgerButton.setOnClickListener(v -> {
+            if (isDropdownOpen) {
+                closeDropdown();
+            } else {
+                openDropdown();
+            }
+        });
+
+        // Home — close dropdown
+        menuHome.setOnClickListener(v -> {
+            closeDropdown();
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+        });
+
+        // Menu — TODO: navigate to menu page
+        menuItems.setOnClickListener(v -> {
+            closeDropdown();
+            Intent intent = new Intent(this, ProductActivity.class);
+            startActivity(intent);
+        });
+
+        menuBranch.setOnClickListener(v -> {
+            closeDropdown();
+            Intent intent = new Intent(this, BranchActivity.class);
+            startActivity(intent);
+        });
+
+        // Log Out
+        menuLogout.setOnClickListener(v -> {
+            closeDropdown();
+            AppGlobals.loggedInUsername = "";
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        });
+    }
+
+    private void openDropdown() {
+        hamburgerButton.setImageResource(R.drawable.ic_close);
+        dropdownMenu.setVisibility(View.VISIBLE);
+        dropdownMenu.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int targetHeight = dropdownMenu.getMeasuredHeight();
+
+        dropdownMenu.getLayoutParams().height = 0;
+        dropdownMenu.setAlpha(0f);
+        dropdownMenu.requestLayout();
+
+        ValueAnimator animator = ValueAnimator.ofInt(0, targetHeight);
+        animator.setDuration(250);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+        animator.addUpdateListener(animation -> {
+            dropdownMenu.getLayoutParams().height = (int) animation.getAnimatedValue();
+            dropdownMenu.requestLayout();
+            dropdownMenu.setAlpha(animation.getAnimatedFraction());
+        });
+        animator.start();
+        isDropdownOpen = true;
+    }
+
+    private void closeDropdown() {
+        hamburgerButton.setImageResource(R.drawable.ic_hamburger);
+        int initialHeight = dropdownMenu.getMeasuredHeight();
+
+        ValueAnimator animator = ValueAnimator.ofInt(initialHeight, 0);
+        animator.setDuration(200);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
+        animator.addUpdateListener(animation -> {
+            dropdownMenu.getLayoutParams().height = (int) animation.getAnimatedValue();
+            dropdownMenu.requestLayout();
+            dropdownMenu.setAlpha(1f - animation.getAnimatedFraction());
+            if ((int) animation.getAnimatedValue() == 0) {
+                dropdownMenu.setVisibility(View.GONE);
+            }
+        });
+        animator.start();
+        isDropdownOpen = false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +127,7 @@ public class BranchActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_branch);
 
-        // Back button
-        ImageButton backButton = findViewById(R.id.backButton);
-        backButton.setOnClickListener(v -> finish());
+        setupDropdown();
 
         noResultsText = findViewById(R.id.noResultsText);
 
