@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -72,6 +73,35 @@ public class BranchActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
+        });
+
+        // Close dropdown when touching outside of it
+        View rootView = findViewById(android.R.id.content);
+        rootView.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN && isDropdownOpen) {
+                int[] menuLocation = new int[2];
+                int[] btnLocation  = new int[2];
+                dropdownMenu.getLocationOnScreen(menuLocation);
+                hamburgerButton.getLocationOnScreen(btnLocation);
+
+                float x = event.getRawX();
+                float y = event.getRawY();
+
+                boolean insideMenu = x >= menuLocation[0]
+                        && x <= menuLocation[0] + dropdownMenu.getWidth()
+                        && y >= menuLocation[1]
+                        && y <= menuLocation[1] + dropdownMenu.getHeight();
+
+                boolean insideBtn = x >= btnLocation[0]
+                        && x <= btnLocation[0] + hamburgerButton.getWidth()
+                        && y >= btnLocation[1]
+                        && y <= btnLocation[1] + hamburgerButton.getHeight();
+
+                if (!insideMenu && !insideBtn) {
+                    closeDropdown();
+                }
+            }
+            return false;
         });
     }
 

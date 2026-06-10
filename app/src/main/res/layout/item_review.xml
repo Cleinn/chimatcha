@@ -61,8 +61,8 @@
         android:layout_height="wrap_content"
         android:text="Review goes here..."
         android:textColor="#555555"
-        android:textSize="12sp"
-        android:fontFamily="@font/montserrat_regular"
+        android:textSize="13sp"
+        android:fontFamily="@font/montserrat_semibold"
         android:layout_marginTop="8dp"
         android:maxLines="3"
         android:ellipsize="end" />

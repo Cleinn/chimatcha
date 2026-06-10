@@ -1,5 +1,6 @@
 package com.example.chimatcha;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -130,7 +130,7 @@ public class ProductDetailActivity extends AppCompatActivity {
             if (parsedQty <= 0) {
                 new MaterialAlertDialogBuilder(this)
                     .setTitle("Invalid Quantity")
-                    .setMessage("Please enter a quantity of at least 1 before adding to cart.")
+                    .setMessage("Please enter a quantity of at least 1 before ordering.")
                     .setPositiveButton("OK", (dialog, which) -> {
                         quantityText.setText("1");
                         quantity = 1;
@@ -140,7 +140,16 @@ public class ProductDetailActivity extends AppCompatActivity {
                 return;
             }
             quantity = parsedQty;
-            Toast.makeText(this, quantity + "x " + name + " added to cart!", Toast.LENGTH_SHORT).show();
+            new MaterialAlertDialogBuilder(this)
+                .setTitle("Your order of " + quantity + "x " + name + " has been placed!")
+                .setMessage("A confirmation email has been sent to your registered address.")
+                .setPositiveButton("OK", (dialog, which) -> {
+                    Intent intent = new Intent(this, ProductActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    startActivity(intent);
+                    finish();
+                })
+                .show();
         });
 
         backButton.setOnClickListener(v -> finish());

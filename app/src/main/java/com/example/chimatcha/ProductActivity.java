@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -74,6 +75,35 @@ public class ProductActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
+
+        // Close dropdown when touching outside of it
+        View rootView = findViewById(android.R.id.content);
+        rootView.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN && isDropdownOpen) {
+                int[] menuLocation = new int[2];
+                int[] btnLocation  = new int[2];
+                dropdownMenu.getLocationOnScreen(menuLocation);
+                hamburgerButton.getLocationOnScreen(btnLocation);
+
+                float x = event.getRawX();
+                float y = event.getRawY();
+
+                boolean insideMenu = x >= menuLocation[0]
+                        && x <= menuLocation[0] + dropdownMenu.getWidth()
+                        && y >= menuLocation[1]
+                        && y <= menuLocation[1] + dropdownMenu.getHeight();
+
+                boolean insideBtn = x >= btnLocation[0]
+                        && x <= btnLocation[0] + hamburgerButton.getWidth()
+                        && y >= btnLocation[1]
+                        && y <= btnLocation[1] + hamburgerButton.getHeight();
+
+                if (!insideMenu && !insideBtn) {
+                    closeDropdown();
+                }
+            }
+            return false;
+        });
     }
 
     private void openDropdown() {
@@ -142,12 +172,12 @@ public class ProductActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         List<Product> products = new ArrayList<>();
-        products.add(new Product("StrawMatcha",    "A combination between milk matcha and strawberry fruit.", "Rp.25.000", R.drawable.ic_chimatcha_logo, 23456));
-        products.add(new Product("Matcha n Boba",  "Standard matcha milk with toppings of boba.",            "Rp.20.000", R.drawable.ic_chimatcha_logo, 45678));
-        products.add(new Product("Mango Matcha",   "A fresh taste of mango squash with pure matcha.",        "Rp.23.000", R.drawable.ic_chimatcha_logo, 32930));
-        products.add(new Product("Base Milk Matcha","Classical matcha with elegant iced milk.",              "Rp.15.000", R.drawable.ic_chimatcha_logo, 52344));
-        products.add(new Product("Matcha Latte",   "Creamy hot matcha with steamed oat milk.",               "Rp.22.000", R.drawable.ic_chimatcha_logo, 18920));
-        products.add(new Product("Yuzu Matcha",    "Zesty yuzu citrus blended with premium matcha.",        "Rp.27.000", R.drawable.ic_chimatcha_logo, 11203));
+        products.add(new Product("StrawMatcha", "A combination between milk matcha and strawberry fruit.", "Rp.25.000", R.drawable.product_strawmatcha, 23456));
+        products.add(new Product("Matcha n Boba", "Standard matcha milk with toppings of boba.", "Rp.20.000", R.drawable.product_matchaboba, 45678));
+        products.add(new Product("Mango Matcha", "A fresh taste of mango squash with pure matcha.",  "Rp.23.000", R.drawable.product_mangomatcha, 32930));
+        products.add(new Product("Base Milk Matcha", "Classical matcha with elegant iced milk.", "Rp.15.000", R.drawable.product_matchalatte, 52344));
+        products.add(new Product("Pure Matcha", "A pure fresh brewed matcha", "Rp.22.000", R.drawable.product_purematcha, 18920));
+        products.add(new Product("Yuzu Matcha", "Zesty yuzu citrus blended with premium matcha.", "Rp.27.000", R.drawable.product_yuzumatcha, 11203));
 
         adapter = new ProductAdapter(this, products);
         recyclerView.setAdapter(adapter);

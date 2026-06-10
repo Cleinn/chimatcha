@@ -52,7 +52,7 @@
                 android:paddingEnd="16dp"
                 android:textColor="#333333"
                 android:textColorHint="@color/chimatcha_text_hint"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:fontFamily="@font/montserrat_medium" />
 
         </RelativeLayout>
@@ -83,7 +83,7 @@
                 android:paddingEnd="16dp"
                 android:textColor="#333333"
                 android:textColorHint="@color/chimatcha_text_hint"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:fontFamily="@font/montserrat_medium" />
 
         </RelativeLayout>
@@ -125,7 +125,7 @@
                 android:paddingEnd="48dp"
                 android:textColor="#333333"
                 android:textColorHint="@color/chimatcha_text_hint"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:fontFamily="@font/montserrat_medium" />
 
         </RelativeLayout>
@@ -167,7 +167,7 @@
                 android:paddingEnd="48dp"
                 android:textColor="#333333"
                 android:textColorHint="@color/chimatcha_text_hint"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:fontFamily="@font/montserrat_medium" />
 
         </RelativeLayout>
@@ -176,14 +176,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="By clicking the Register button, you agree\nto the public offer"
+            android:text="@string/register_terms"
             android:textColor="#676767"
             android:textSize="12sp"
             android:fontFamily="@font/montserrat_regular"
             android:layout_marginBottom="20dp" />
 
         <!-- Create Account Button -->
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="54dp"
@@ -193,7 +193,8 @@
             android:text="Create Account"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="17sp" />
+            android:textSize="20sp"
+            android:stateListAnimator="@null" />
 
         <!-- OR Continue with -->
         <TextView

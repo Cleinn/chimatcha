@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -89,6 +91,36 @@ public class HomeActivity extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
+        });
+
+        // Close dropdown when touching outside of it
+        // Use mainScroll (NestedScrollView) since it covers the full screen
+        NestedScrollView mainScroll = findViewById(R.id.mainScroll);
+        mainScroll.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN && isDropdownOpen) {
+                int[] menuLocation = new int[2];
+                int[] btnLocation  = new int[2];
+                dropdownMenu.getLocationOnScreen(menuLocation);
+                hamburgerButton.getLocationOnScreen(btnLocation);
+
+                float x = event.getRawX();
+                float y = event.getRawY();
+
+                boolean insideMenu = x >= menuLocation[0]
+                        && x <= menuLocation[0] + dropdownMenu.getWidth()
+                        && y >= menuLocation[1]
+                        && y <= menuLocation[1] + dropdownMenu.getHeight();
+
+                boolean insideBtn = x >= btnLocation[0]
+                        && x <= btnLocation[0] + hamburgerButton.getWidth()
+                        && y >= btnLocation[1]
+                        && y <= btnLocation[1] + hamburgerButton.getHeight();
+
+                if (!insideMenu && !insideBtn) {
+                    closeDropdown();
+                }
+            }
+            return false;
         });
     }
 
@@ -191,8 +223,8 @@ public class HomeActivity extends AppCompatActivity {
         List<Product> products = new ArrayList<>();
         products.add(new Product("StrawMatcha", "A combination between milk matcha and strawberry fruit.", "Rp.25.000", R.drawable.product_strawmatcha, 23456));
         products.add(new Product("Mango Matcha", "A fresh taste of mango squash with pure matcha.", "Rp.23.000", R.drawable.product_mangomatcha, 32930));
-        products.add(new Product("Pure Matcha", "Classic pure matcha with a rich earthy flavor.", "Rp.20.000", R.drawable.product_purematcha, 18200));
-        products.add(new Product("Matcha Latte", "Smooth matcha with creamy milk.", "Rp.22.000", R.drawable.product_matchalatte, 27500));
+        products.add(new Product("Matcha n Boba", "Standard matcha milk with toppings of boba.", "Rp.20.000", R.drawable.product_purematcha, 18200));
+        products.add(new Product("Base Milk Matcha", "Smooth matcha with creamy milk.", "Rp.22.000", R.drawable.product_matchalatte, 27500));
 
         BestSellingAdapter adapter = new BestSellingAdapter(this, products);
         recyclerView.setAdapter(adapter);
@@ -204,11 +236,11 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         List<ReviewAdapter.Review> reviews = new ArrayList<>();
-        reviews.add(new ReviewAdapter.Review("Akila",   "2w", 5, "So goooood"));
-        reviews.add(new ReviewAdapter.Review("Mia",     "3w", 5, "Very refreshing! The Mango Matcha is my absolute favorite."));
-        reviews.add(new ReviewAdapter.Review("Rafi",    "1mo", 4, "Great taste and fast delivery. Will order again!"));
-        reviews.add(new ReviewAdapter.Review("Sari",    "1mo", 5, "Best matcha drink I've ever had. Highly recommended!"));
-        reviews.add(new ReviewAdapter.Review("Dion",    "2mo", 4, "Love the StrawMatcha combo. Really unique flavor."));
+        reviews.add(new ReviewAdapter.Review("Akila", "2w", 5, "So goooood"));
+        reviews.add(new ReviewAdapter.Review("Mia", "3w", 5, "Very refreshing! The Mango Matcha is my absolute favorite."));
+        reviews.add(new ReviewAdapter.Review("Rafi", "1mo", 4, "Great taste and fast delivery. Will order again!"));
+        reviews.add(new ReviewAdapter.Review("Sari", "1mo", 5, "Best matcha drink I've ever had. Highly recommended!"));
+        reviews.add(new ReviewAdapter.Review("Dion", "2mo", 4, "Love the StrawMatcha combo. Really unique flavor."));
 
         ReviewAdapter adapter = new ReviewAdapter(this, reviews);
         recyclerView.setAdapter(adapter);

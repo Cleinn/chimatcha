@@ -19,4 +19,5 @@
     <string name="login_link">Login</string>
     <string name="register_agree">By clicking the Register button, you agree to the public offer</string>
     <string name="forgot_hint">* We will send you a message to set or reset your new password</string>
+    <string name="register_terms">By clicking the \<b>\<font color="#E8445A">Register\</font>\</b> button, you agree to the public offer\</string>
 </resources>

@@ -28,8 +28,8 @@
             android:layout_height="wrap_content"
             android:text="Product Name"
             android:textColor="#222222"
-            android:textSize="14sp"
-            android:fontFamily="@font/montserrat_medium" />
+            android:textSize="16sp"
+            android:fontFamily="@font/montserrat_semibold" />
 
         <TextView
             android:id="@+id/productDesc"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="Description here"
             android:textColor="#888888"
-            android:textSize="11sp"
+            android:textSize="10sp"
             android:fontFamily="@font/montserrat_regular"
             android:maxLines="2"
             android:ellipsize="end"
@@ -49,8 +49,8 @@
             android:layout_height="wrap_content"
             android:text="Rp.0"
             android:textColor="#222222"
-            android:textSize="13sp"
-            android:fontFamily="@font/montserrat_medium"
+            android:textSize="12sp"
+            android:fontFamily="@font/montserrat_semibold"
             android:layout_marginTop="4dp" />
 
         <!-- Stars Row -->
@@ -93,7 +93,8 @@
                 android:text="0"
                 android:textColor="#888888"
                 android:textSize="10sp"
-                android:layout_marginStart="4dp" />
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/montserrat_bold"/>
 
         </LinearLayout>
 

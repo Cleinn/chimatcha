@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             GradientDrawable bg = new GradientDrawable();
             bg.setCornerRadius(80f);
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                bg.setColor(Color.parseColor("#CC2A47"));
+                bg.setColor(Color.parseColor("#D84962"));
                 loginButton.setBackground(bg);
             } else if (event.getAction() == MotionEvent.ACTION_UP
                     || event.getAction() == MotionEvent.ACTION_CANCEL) {
