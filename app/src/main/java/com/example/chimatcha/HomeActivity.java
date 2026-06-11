@@ -168,6 +168,8 @@ public class HomeActivity extends AppCompatActivity {
     private void setupCarousel() {
         carouselViewPager = findViewById(R.id.carouselViewPager);
         dotsIndicator = findViewById(R.id.dotsIndicator);
+        ImageButton prevBtn = findViewById(R.id.carouselPrevBtn);
+        ImageButton nextBtn = findViewById(R.id.carouselNextBtn);
 
         carouselImages = new ArrayList<>();
         carouselImages.add(R.drawable.carousel_1);
@@ -177,10 +179,25 @@ public class HomeActivity extends AppCompatActivity {
         CarouselAdapter adapter = new CarouselAdapter(this, carouselImages);
         carouselViewPager.setAdapter(adapter);
 
-        carouselViewPager.setPageTransformer((page, position) -> {
-            float absPos = Math.abs(position);
-            page.setAlpha(1 - absPos * 0.3f);
-            page.setScaleY(1 - absPos * 0.05f);
+        // Fix touch conflict between ViewPager2 and NestedScrollView
+        carouselViewPager.getChildAt(0).setOnTouchListener((v, event) -> {
+            v.getParent().requestDisallowInterceptTouchEvent(true);
+            return false;
+        });
+
+        carouselViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                setupDots(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                // Close dropdown when user starts swiping the carousel
+                if (state == ViewPager2.SCROLL_STATE_DRAGGING && isDropdownOpen) {
+                    closeDropdown();
+                }
+            }
         });
 
         setupDots(0);
@@ -192,6 +209,27 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        // Prev button
+        prevBtn.setOnClickListener(v -> {
+            int current = carouselViewPager.getCurrentItem();
+            if (current > 0) {
+                carouselViewPager.setCurrentItem(current - 1, true);
+            } else {
+                carouselViewPager.setCurrentItem(carouselImages.size() - 1, true);
+            }
+        });
+
+        // Next button
+        nextBtn.setOnClickListener(v -> {
+            int current = carouselViewPager.getCurrentItem();
+            if (current < carouselImages.size() - 1) {
+                carouselViewPager.setCurrentItem(current + 1, true);
+            } else {
+                carouselViewPager.setCurrentItem(0, true);
+            }
+        });
+
+        // Auto-slide
         autoSlideHandler = new Handler(Looper.getMainLooper());
         autoSlideRunnable = new Runnable() {
             @Override

@@ -73,16 +73,39 @@
             <!-- CAROUSEL -->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="24dp">
+                android:layout_height="220dp">
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/carouselViewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:nestedScrollingEnabled="false" />
 
+                <!-- Previous Button -->
+                <ImageButton
+                    android:id="@+id/carouselPrevBtn"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/ic_arrow_left"
+                    android:background="@drawable/carousel_btn_bg"
+                    android:contentDescription="Previous" />
+
+                <!-- Next Button -->
+                <ImageButton
+                    android:id="@+id/carouselNextBtn"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_arrow_right"
+                    android:background="@drawable/carousel_btn_bg"
+                    android:contentDescription="Next" />
+
+                <!-- Dots indicator -->
                 <LinearLayout
                     android:id="@+id/dotsIndicator"
                     android:layout_width="wrap_content"

@@ -75,7 +75,7 @@
             android:textSize="14sp"
             android:textColor="#333333"
             android:textColorHint="@color/chimatcha_text_hint"
-            android:fontFamily="@font/montserrat_regular"
+            android:fontFamily="@font/montserrat_bold"
             android:inputType="text"
             android:imeOptions="actionSearch"
             android:singleLine="true" />

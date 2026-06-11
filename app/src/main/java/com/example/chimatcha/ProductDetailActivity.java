@@ -19,6 +19,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import android.view.MotionEvent;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -26,12 +27,12 @@ public class ProductDetailActivity extends AppCompatActivity {
     private EditText quantityText;
 
     private String selectedSweet = "Normal Sweet";
-    private String selectedIce   = "Normal Ice";
+    private String selectedIce = "Normal Ice";
 
-    public static final String EXTRA_NAME    = "product_name";
-    public static final String EXTRA_DESC    = "product_desc";
-    public static final String EXTRA_PRICE   = "product_price";
-    public static final String EXTRA_IMAGE   = "product_image";
+    public static final String EXTRA_NAME = "product_name";
+    public static final String EXTRA_DESC = "product_desc";
+    public static final String EXTRA_PRICE = "product_price";
+    public static final String EXTRA_IMAGE = "product_image";
     public static final String EXTRA_REVIEWS = "product_reviews";
 
     @Override
@@ -39,33 +40,33 @@ public class ProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
+                WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
         );
 
         setContentView(R.layout.activity_product_detail);
 
-        String name  = getIntent().getStringExtra(EXTRA_NAME);
-        String desc  = getIntent().getStringExtra(EXTRA_DESC);
+        String name = getIntent().getStringExtra(EXTRA_NAME);
+        String desc = getIntent().getStringExtra(EXTRA_DESC);
         String price = getIntent().getStringExtra(EXTRA_PRICE);
         int imageRes = getIntent().getIntExtra(EXTRA_IMAGE, R.drawable.ic_chimatcha_logo);
-        int reviews  = getIntent().getIntExtra(EXTRA_REVIEWS, 0);
+        int reviews = getIntent().getIntExtra(EXTRA_REVIEWS, 0);
 
-        ImageView   detailImage  = findViewById(R.id.detailImage);
-        TextView    detailName   = findViewById(R.id.detailName);
-        TextView    detailPrice  = findViewById(R.id.detailPrice);
-        TextView    detailDesc   = findViewById(R.id.detailDesc);
-        TextView    detailReviews= findViewById(R.id.detailReviews);
-        quantityText             = findViewById(R.id.quantityText);
-        TextView    btnMinus     = findViewById(R.id.btnMinus);
-        TextView    btnPlus      = findViewById(R.id.btnPlus);
-        Button      addToCartBtn = findViewById(R.id.addToCartBtn);
-        ImageButton backButton   = findViewById(R.id.backButton);
+        ImageView detailImage = findViewById(R.id.detailImage);
+        TextView detailName = findViewById(R.id.detailName);
+        TextView detailPrice = findViewById(R.id.detailPrice);
+        TextView detailDesc = findViewById(R.id.detailDesc);
+        TextView detailReviews = findViewById(R.id.detailReviews);
+        quantityText = findViewById(R.id.quantityText);
+        TextView btnMinus = findViewById(R.id.btnMinus);
+        TextView btnPlus = findViewById(R.id.btnPlus);
+        Button addToCartBtn = findViewById(R.id.addToCartBtn);
+        ImageButton backButton = findViewById(R.id.backButton);
 
         LinearLayout sweetLayout = findViewById(R.id.sweetLevelLayout);
-        TextView     sweetText   = findViewById(R.id.sweetLevelText);
-        LinearLayout iceLayout   = findViewById(R.id.iceLevelLayout);
-        TextView     iceText     = findViewById(R.id.iceLevelText);
+        TextView sweetText = findViewById(R.id.sweetLevelText);
+        LinearLayout iceLayout = findViewById(R.id.iceLevelLayout);
+        TextView iceText = findViewById(R.id.iceLevelText);
 
         detailImage.setImageResource(imageRes);
         detailName.setText(name);
@@ -73,27 +74,24 @@ public class ProductDetailActivity extends AppCompatActivity {
         detailDesc.setText(desc);
         detailReviews.setText("(" + String.format("%,d", reviews) + ")");
 
-        // Sweet level dropdown
         String[] sweetOptions = {"Normal Sweet", "Less Sweet", "Half Sweet", "No Sugar"};
         sweetLayout.setOnClickListener(v ->
-            showDropdown(sweetLayout, sweetText, sweetOptions, chosen -> {
-                selectedSweet = chosen;
-                sweetText.setText(chosen);
-                sweetText.setTextColor(0xFF333333);
-            })
+                showDropdown(sweetLayout, sweetText, sweetOptions, chosen -> {
+                    selectedSweet = chosen;
+                    sweetText.setText(chosen);
+                    sweetText.setTextColor(0xFF333333);
+                })
         );
 
-        // Ice level dropdown
         String[] iceOptions = {"Normal Ice", "Less Ice", "No Ice", "Extra Ice"};
         iceLayout.setOnClickListener(v ->
-            showDropdown(iceLayout, iceText, iceOptions, chosen -> {
-                selectedIce = chosen;
-                iceText.setText(chosen);
-                iceText.setTextColor(0xFF333333);
-            })
+                showDropdown(iceLayout, iceText, iceOptions, chosen -> {
+                    selectedIce = chosen;
+                    iceText.setText(chosen);
+                    iceText.setTextColor(0xFF333333);
+                })
         );
 
-        // Sync quantity int whenever the user edits the field directly
         quantityText.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
@@ -121,6 +119,19 @@ public class ProductDetailActivity extends AppCompatActivity {
             quantityText.setSelection(quantityText.getText().length());
         });
 
+        addToCartBtn.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                v.getBackground().setColorFilter(
+                        android.graphics.Color.parseColor("#D84962"),
+                        android.graphics.PorterDuff.Mode.SRC_IN
+                );
+            } else if (event.getAction() == MotionEvent.ACTION_UP
+                    || event.getAction() == MotionEvent.ACTION_CANCEL) {
+                v.getBackground().clearColorFilter();
+            }
+            return false;
+        });
+
         addToCartBtn.setOnClickListener(v -> {
             String raw = quantityText.getText().toString().trim();
             int parsedQty = 0;
@@ -129,27 +140,28 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
             if (parsedQty <= 0) {
                 new MaterialAlertDialogBuilder(this)
-                    .setTitle("Invalid Quantity")
-                    .setMessage("Please enter a quantity of at least 1 before ordering.")
-                    .setPositiveButton("OK", (dialog, which) -> {
-                        quantityText.setText("1");
-                        quantity = 1;
-                        quantityText.requestFocus();
-                    })
-                    .show();
+                        .setTitle("Invalid Quantity")
+                        .setMessage("Please enter a quantity of at least 1 before ordering.")
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            quantityText.setText("1");
+                            quantity = 1;
+                            quantityText.requestFocus();
+                        })
+                        .show();
                 return;
             }
             quantity = parsedQty;
             new MaterialAlertDialogBuilder(this)
-                .setTitle("Your order of " + quantity + "x " + name + " has been placed!")
-                .setMessage("A confirmation email has been sent to your registered address.")
-                .setPositiveButton("OK", (dialog, which) -> {
-                    Intent intent = new Intent(this, ProductActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                    finish();
-                })
-                .show();
+                    .setTitle("Your order of " + quantity + "x " + name + " has been placed!")
+                    .setMessage("A confirmation email has been sent to your registered address.")
+                    .setPositiveButton("OK", null)
+                    .setOnDismissListener(dialog -> {
+                        Intent intent = new Intent(this, ProductActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        finish();
+                    })
+                    .show();
         });
 
         backButton.setOnClickListener(v -> finish());
@@ -165,24 +177,22 @@ public class ProductDetailActivity extends AppCompatActivity {
         View popupView = LayoutInflater.from(this).inflate(R.layout.dropdown_popup, null);
 
         TextView headerText = popupView.findViewById(R.id.popupSelectedText);
-        ListView listView   = popupView.findViewById(R.id.popupList);
+        ListView listView = popupView.findViewById(R.id.popupList);
 
         headerText.setText(selectedView.getText());
 
-        // Measure total height: header (48dp) + divider (1dp) + items (56dp each)
-        float density    = getResources().getDisplayMetrics().density;
-        int   headerH    = (int)(49 * density);   // 48dp header + 1dp divider
-        int   itemH      = (int)(56 * density);
-        int   totalH     = headerH + itemH * options.length;
-        int   anchorW    = anchor.getWidth();
+        float density = getResources().getDisplayMetrics().density;
+        int headerH = (int)(49 * density);
+        int itemH = (int)(56 * density);
+        int totalH = headerH + itemH * options.length;
+        int anchorW = anchor.getWidth();
 
-        PopupWindow popup = new PopupWindow(popupView,
-            anchorW, totalH, true);
+        PopupWindow popup = new PopupWindow(popupView, anchorW, totalH, true);
         popup.setElevation(12 * density);
         popup.setOutsideTouchable(true);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-            this, R.layout.spinner_dropdown_item, options);
+                this, R.layout.spinner_dropdown_item, options);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
@@ -190,7 +200,6 @@ public class ProductDetailActivity extends AppCompatActivity {
             popup.dismiss();
         });
 
-        // Show aligned to the anchor's top-left
         int[] location = new int[2];
         anchor.getLocationOnScreen(location);
         popup.showAtLocation(anchor, Gravity.NO_GRAVITY, location[0], location[1]);

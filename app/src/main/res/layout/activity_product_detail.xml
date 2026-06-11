@@ -343,6 +343,7 @@
         <!-- ADD TO CART pinned inside the white card at the bottom -->
         <Button
             android:id="@+id/addToCartBtn"
+            style="@style/Widget.AppCompat.Button"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginStart="20dp"
@@ -355,7 +356,6 @@
             android:textColor="#FFFFFF"
             android:textSize="17sp"
             android:fontFamily="@font/montserrat_semibold" />
-
     </LinearLayout>
 
 </FrameLayout>
