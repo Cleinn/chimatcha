@@ -24,7 +24,6 @@ public class Branch {
     public double getLatitude() { return latitude; }
     public double getLongitude() { return longitude; }
 
-    // Used by search — matches against name, address, hours
     public boolean matchesQuery(String query) {
         String q = query.toLowerCase().trim();
         return name.toLowerCase().contains(q)

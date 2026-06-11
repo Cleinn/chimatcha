@@ -52,7 +52,6 @@ public class BranchActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Menu — TODO: navigate to menu page
         menuItems.setOnClickListener(v -> {
             closeDropdown();
             Intent intent = new Intent(this, ProductActivity.class);
@@ -65,7 +64,6 @@ public class BranchActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Log Out
         menuLogout.setOnClickListener(v -> {
             closeDropdown();
             AppGlobals.loggedInUsername = "";
@@ -75,7 +73,6 @@ public class BranchActivity extends AppCompatActivity {
             finish();
         });
 
-        // Close dropdown when touching outside of it
         View rootView = findViewById(android.R.id.content);
         rootView.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN && isDropdownOpen) {
@@ -156,9 +153,7 @@ public class BranchActivity extends AppCompatActivity {
         );
 
         setContentView(R.layout.activity_branch);
-
         setupDropdown();
-
         noResultsText = findViewById(R.id.noResultsText);
 
         setupRecycler();

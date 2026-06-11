@@ -14,19 +14,41 @@
         android:paddingEnd="28dp"
         android:paddingBottom="28dp">
 
-        <!-- Title -->
         <TextView
             android:id="@+id/titleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create an\naccount"
+            android:text="Create an"
             android:fontFamily="@font/montaga_regular"
             android:textColor="@color/chimatcha_text_white"
             android:textSize="48sp"
             android:lineHeight="43sp"
-            android:layout_marginBottom="36dp" />
+            android:layout_marginBottom="-10dp" />
 
-        <!-- Username Field -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="60dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:fontFamily="@font/montaga_regular"
+                android:textColor="@color/chimatcha_text_white"
+                android:textSize="48sp"
+                android:lineHeight="52sp"/>
+
+            <ImageView
+                android:layout_width="42dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="12dp"
+                android:src="@drawable/ic_chimatcha_logo"/>
+
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -57,7 +79,6 @@
 
         </RelativeLayout>
 
-        <!-- Email Field -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -88,7 +109,6 @@
 
         </RelativeLayout>
 
-        <!-- Password Field -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -130,7 +150,6 @@
 
         </RelativeLayout>
 
-        <!-- Confirm Password Field -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -172,7 +191,6 @@
 
         </RelativeLayout>
 
-        <!-- Terms text with bold colored "Register" -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -182,7 +200,6 @@
             android:fontFamily="@font/montserrat_regular"
             android:layout_marginBottom="20dp" />
 
-        <!-- Create Account Button -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
@@ -196,7 +213,6 @@
             android:textSize="20sp"
             android:stateListAnimator="@null" />
 
-        <!-- OR Continue with -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -206,7 +222,6 @@
             android:textSize="13sp"
             android:layout_marginBottom="16dp" />
 
-        <!-- Social Buttons -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -242,7 +257,6 @@
 
         </LinearLayout>
 
-        <!-- Login link -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

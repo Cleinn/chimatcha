@@ -49,7 +49,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
         holder.reviewTime.setText(review.timeAgo);
         holder.reviewText.setText(review.text);
 
-        // Build star icons dynamically
         holder.starsContainer.removeAllViews();
         for (int i = 1; i <= 5; i++) {
             ImageView star = new ImageView(context);
@@ -60,9 +59,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewView
             star.setLayoutParams(params);
             star.setImageResource(R.drawable.ic_star);
             star.setColorFilter(
-                i <= review.rating
-                    ? 0xFFFFC107  // gold
-                    : 0xFFCCCCCC, // grey
+                i <= review.rating ? 0xFFFFC107 : 0xFFCCCCCC,
                 android.graphics.PorterDuff.Mode.SRC_IN
             );
             holder.starsContainer.addView(star);

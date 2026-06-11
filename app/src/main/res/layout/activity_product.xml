@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/chimatcha_bg">
 
-    <!-- TOP BAR — same as BranchActivity -->
     <RelativeLayout
         android:id="@+id/topBar"
         android:layout_width="match_parent"
@@ -46,7 +45,6 @@
 
     </RelativeLayout>
 
-    <!-- SEARCH BAR — same as BranchActivity -->
     <RelativeLayout
         android:id="@+id/searchBarLayout"
         android:layout_width="343dp"
@@ -82,7 +80,6 @@
 
     </RelativeLayout>
 
-    <!-- 2-COLUMN PRODUCT GRID -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/productRecycler"
         android:layout_width="match_parent"
@@ -94,7 +91,6 @@
         android:paddingBottom="16dp"
         android:clipToPadding="false" />
 
-    <!-- NO RESULTS -->
     <TextView
         android:id="@+id/noResultsText"
         android:layout_width="wrap_content"
@@ -106,7 +102,6 @@
         android:fontFamily="@font/montserrat_regular"
         android:visibility="gone" />
 
-    <!-- Dropdown Menu-->
     <LinearLayout
         android:id="@+id/dropdownMenu"
         android:layout_width="160dp"
@@ -120,7 +115,6 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp">
 
-        <!-- Home -->
         <LinearLayout
             android:id="@+id/menuHome"
             android:layout_width="match_parent"
@@ -153,7 +147,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp" />
 
-        <!--         Menu -->
         <LinearLayout
             android:id="@+id/menuItems"
             android:layout_width="match_parent"
@@ -186,7 +179,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp" />
 
-        <!-- Branch -->
         <LinearLayout
             android:id="@+id/menuBranch"
             android:layout_width="match_parent"
@@ -219,7 +211,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp" />
 
-        <!-- Log Out -->
         <LinearLayout
             android:id="@+id/menuLogout"
             android:layout_width="match_parent"

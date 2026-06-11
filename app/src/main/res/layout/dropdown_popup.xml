@@ -6,7 +6,6 @@
     android:background="@drawable/dropdown_bg"
     android:clipToOutline="true">
 
-    <!-- Selected / header row -->
     <LinearLayout
         android:id="@+id/popupHeader"
         android:layout_width="match_parent"
@@ -35,13 +34,11 @@
 
     </LinearLayout>
 
-    <!-- Divider -->
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#EEEEEE" />
 
-    <!-- Options list -->
     <ListView
         android:id="@+id/popupList"
         android:layout_width="match_parent"

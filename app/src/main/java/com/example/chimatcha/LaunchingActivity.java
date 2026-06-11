@@ -24,16 +24,15 @@ public class LaunchingActivity extends AppCompatActivity {
 
         Button getStartedButton = findViewById(R.id.getStartedButton);
 
-        // Button press color change
         getStartedButton.setOnTouchListener((v, event) -> {
             GradientDrawable bg = new GradientDrawable();
             bg.setCornerRadius(80f);
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                bg.setColor(Color.parseColor("#CC2A47")); // darker on press
+                bg.setColor(Color.parseColor("#CC2A47"));
                 getStartedButton.setBackground(bg);
             } else if (event.getAction() == MotionEvent.ACTION_UP
                     || event.getAction() == MotionEvent.ACTION_CANCEL) {
-                bg.setColor(Color.parseColor("#FF3B5C")); // original
+                bg.setColor(Color.parseColor("#FF3B5C"));
                 getStartedButton.setBackground(bg);
             }
             return false;

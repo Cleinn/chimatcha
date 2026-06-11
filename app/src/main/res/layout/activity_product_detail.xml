@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="#0D2B1E">
 
-    <!-- Back arrow on dark bg -->
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="36dp"
@@ -16,7 +15,6 @@
         android:padding="4dp"
         android:tint="@color/chimatcha_text_white" />
 
-    <!-- White card that fills the bottom portion, image sits at its top -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +22,6 @@
         android:orientation="vertical"
         android:background="@drawable/card_top_bg">
 
-        <!-- Drag handle / top indicator -->
         <View
             android:layout_width="40dp"
             android:layout_height="4dp"
@@ -64,7 +61,6 @@
 
                 </androidx.cardview.widget.CardView>
 
-                <!-- Content below image -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -74,7 +70,6 @@
                     android:paddingTop="16dp"
                     android:paddingBottom="20dp">
 
-                    <!-- Name + Price -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -103,7 +98,6 @@
 
                     </LinearLayout>
 
-                    <!-- Stars + review count -->
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -129,7 +123,6 @@
 
                     </LinearLayout>
 
-                    <!-- Description -->
                     <TextView
                         android:id="@+id/detailDesc"
                         android:layout_width="match_parent"
@@ -140,7 +133,6 @@
                         android:fontFamily="@font/montserrat_regular"
                         android:layout_marginBottom="20dp" />
 
-                    <!-- Sweet Level + Ice Level -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -242,7 +234,6 @@
 
                     </LinearLayout>
 
-                    <!-- Notes label -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -267,7 +258,6 @@
 
                     </LinearLayout>
 
-                    <!-- Notes input -->
                     <EditText
                         android:id="@+id/notesInput"
                         android:layout_width="match_parent"
@@ -283,7 +273,6 @@
                         android:gravity="top"
                         android:layout_marginBottom="20dp" />
 
-                    <!-- Quantity row -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -340,7 +329,6 @@
 
         </ScrollView>
 
-        <!-- ADD TO CART pinned inside the white card at the bottom -->
         <Button
             android:id="@+id/addToCartBtn"
             style="@style/Widget.AppCompat.Button"

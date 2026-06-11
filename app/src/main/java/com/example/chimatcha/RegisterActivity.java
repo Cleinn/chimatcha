@@ -39,16 +39,13 @@ public class RegisterActivity extends AppCompatActivity {
         ImageView passwordToggle = findViewById(R.id.passwordToggle);
         ImageView confirmPasswordToggle = findViewById(R.id.confirmPasswordToggle);
 
-        // Set initial password transformations
         passwordInput.setTransformationMethod(PasswordTransformationMethod.getInstance());
         confirmPasswordInput.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
-        // Underline "Login" link
         SpannableString loginSpan = new SpannableString("Login");
         loginSpan.setSpan(new UnderlineSpan(), 0, loginSpan.length(), 0);
         loginText.setText(loginSpan);
 
-        // Password eye toggle
         passwordToggle.setOnClickListener(v -> {
             if (passwordInput.getTransformationMethod() instanceof PasswordTransformationMethod) {
                 passwordInput.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -60,7 +57,6 @@ public class RegisterActivity extends AppCompatActivity {
             passwordInput.setSelection(passwordInput.getText().length());
         });
 
-        // Confirm password eye toggle
         confirmPasswordToggle.setOnClickListener(v -> {
             if (confirmPasswordInput.getTransformationMethod() instanceof PasswordTransformationMethod) {
                 confirmPasswordInput.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -72,7 +68,6 @@ public class RegisterActivity extends AppCompatActivity {
             confirmPasswordInput.setSelection(confirmPasswordInput.getText().length());
         });
 
-        // Button press color change
         registerButton.setOnTouchListener((v, event) -> {
             GradientDrawable bg = new GradientDrawable();
             bg.setCornerRadius(80f);
@@ -87,7 +82,6 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         });
 
-        // Register button — validate then proceed
         registerButton.setOnClickListener(v -> {
             String username = usernameInput.getText().toString().trim();
             String email = emailInput.getText().toString().trim();

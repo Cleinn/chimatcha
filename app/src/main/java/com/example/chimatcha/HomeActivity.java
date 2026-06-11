@@ -44,14 +44,13 @@ public class HomeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_home);
 
-        // Welcome message
         TextView welcomeText = findViewById(R.id.welcomeText);
         welcomeText.setText("Welcome, " + AppGlobals.loggedInUsername + "!");
 
         setupDropdown();
         setupCarousel();
         setupBestSelling();
-        setupReputation();  // <-- NEW
+        setupReputation();
     }
 
     private void setupDropdown() {
@@ -93,8 +92,6 @@ public class HomeActivity extends AppCompatActivity {
             finish();
         });
 
-        // Close dropdown when touching outside of it
-        // Use mainScroll (NestedScrollView) since it covers the full screen
         NestedScrollView mainScroll = findViewById(R.id.mainScroll);
         mainScroll.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN && isDropdownOpen) {
@@ -179,7 +176,6 @@ public class HomeActivity extends AppCompatActivity {
         CarouselAdapter adapter = new CarouselAdapter(this, carouselImages);
         carouselViewPager.setAdapter(adapter);
 
-        // Fix touch conflict between ViewPager2 and NestedScrollView
         carouselViewPager.getChildAt(0).setOnTouchListener((v, event) -> {
             v.getParent().requestDisallowInterceptTouchEvent(true);
             return false;
@@ -268,7 +264,6 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    // ===== NEW: Our Reputation Section =====
     private void setupReputation() {
         RecyclerView recyclerView = findViewById(R.id.reputationRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/chimatcha_bg">
 
-    <!-- Logo centered -->
     <LinearLayout
         android:id="@+id/logoLayout"
         android:layout_width="wrap_content"
@@ -31,7 +30,6 @@
 
     </LinearLayout>
 
-    <!-- Dot loading animation at bottom -->
     <LinearLayout
         android:id="@+id/dotsLayout"
         android:layout_width="wrap_content"

@@ -32,7 +32,6 @@ public class SplashActivity extends AppCompatActivity {
 
         startDotAnimation();
 
-        // Navigate to Login after 3 seconds
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(intent);
@@ -41,21 +40,18 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void startDotAnimation() {
-        // Dot 1 animation
         ObjectAnimator anim1 = ObjectAnimator.ofFloat(dot1, "alpha", 1f, 0.2f);
         anim1.setDuration(600);
         anim1.setRepeatMode(ObjectAnimator.REVERSE);
         anim1.setRepeatCount(ObjectAnimator.INFINITE);
         anim1.setStartDelay(0);
 
-        // Dot 2 animation (delayed)
         ObjectAnimator anim2 = ObjectAnimator.ofFloat(dot2, "alpha", 1f, 0.2f);
         anim2.setDuration(600);
         anim2.setRepeatMode(ObjectAnimator.REVERSE);
         anim2.setRepeatCount(ObjectAnimator.INFINITE);
         anim2.setStartDelay(200);
 
-        // Dot 3 animation (more delayed)
         ObjectAnimator anim3 = ObjectAnimator.ofFloat(dot3, "alpha", 1f, 0.2f);
         anim3.setDuration(600);
         anim3.setRepeatMode(ObjectAnimator.REVERSE);

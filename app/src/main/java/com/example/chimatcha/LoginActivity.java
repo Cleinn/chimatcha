@@ -16,6 +16,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import android.text.style.ImageSpan;
+import android.graphics.drawable.Drawable;
+import androidx.core.content.ContextCompat;
+import android.text.style.ScaleXSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.Spannable;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -37,10 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         EditText passwordInput = findViewById(R.id.passwordInput);
         ImageView passwordToggle = findViewById(R.id.passwordToggle);
 
-        // Set initial password transformation
         passwordInput.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
-        // Password eye toggle
         passwordToggle.setOnClickListener(v -> {
             if (passwordInput.getTransformationMethod() instanceof PasswordTransformationMethod) {
                 passwordInput.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
@@ -52,12 +56,10 @@ public class LoginActivity extends AppCompatActivity {
             passwordInput.setSelection(passwordInput.getText().length());
         });
 
-        // Underline "Sign Up"
         SpannableString signUpSpan = new SpannableString(" Sign Up");
         signUpSpan.setSpan(new UnderlineSpan(), 0, signUpSpan.length(), 0);
         signUpText.setText(signUpSpan);
 
-        // Button press color change
         loginButton.setOnTouchListener((v, event) -> {
             GradientDrawable bg = new GradientDrawable();
             bg.setCornerRadius(80f);
@@ -72,7 +74,6 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         });
 
-        // Login button — validate then proceed
         loginButton.setOnClickListener(v -> {
             String username = usernameInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
@@ -95,22 +96,17 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             if (valid) {
-                // Store username globally
                 AppGlobals.loggedInUsername = username;
 
-                // Check if first time login using SharedPreferences
                 SharedPreferences prefs = getSharedPreferences("chimatcha_prefs", MODE_PRIVATE);
                 boolean isFirstTime = prefs.getBoolean("is_first_time", true);
 
                 if (isFirstTime) {
-                    // Mark as no longer first time
                     prefs.edit().putBoolean("is_first_time", false).apply();
-                    // Go to Launching page
                     Intent intent = new Intent(LoginActivity.this, LaunchingActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else {
-                    // Go directly to Home
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);

@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="#000000">
 
-    <!-- Full screen background photo (unsplash_fouVDmGXoPI) -->
     <ImageView
         android:id="@+id/bgImage"
         android:layout_width="match_parent"
@@ -12,14 +11,12 @@
         android:src="@drawable/unsplash_bg"
         android:scaleType="centerCrop" />
 
-    <!-- Dark gradient overlay (Rectangle_1) -->
     <View
         android:layout_width="match_parent"
         android:layout_height="750dp"
         android:layout_gravity="bottom"
         android:background="@drawable/launching_gradient" />
 
-    <!-- Bottom content area -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +27,6 @@
         android:paddingEnd="32dp"
         android:paddingBottom="48dp">
 
-        <!-- Main headline -->
         <TextView
             android:id="@+id/headlineText"
             android:layout_width="wrap_content"
@@ -42,7 +38,6 @@
             android:gravity="center"
             android:layout_marginBottom="28dp" />
 
-        <!-- Subtitle -->
         <TextView
             android:id="@+id/subtitleText"
             android:layout_width="wrap_content"
@@ -54,7 +49,6 @@
             android:gravity="center"
             android:layout_marginBottom="42dp" />
 
-        <!-- Get Started Button -->
         <Button
             android:textAllCaps="false"
             android:id="@+id/getStartedButton"

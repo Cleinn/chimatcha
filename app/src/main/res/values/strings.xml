@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ChiMatcha</string>
-    <string name="login_title">Welcome To\nChi Matcha!</string>
-    <string name="register_title">Create an\naccount</string>
-    <string name="forgot_title">Forgot\npassword?</string>
-    <string name="username_hint">Username or Email</string>
-    <string name="password_hint">Password</string>
-    <string name="confirm_password_hint">Confirm Password</string>
-    <string name="email_hint">Enter your email address</string>
-    <string name="forgot_password">Forgot Password?</string>
-    <string name="login_btn">Login</string>
-    <string name="register_btn">Create Account</string>
-    <string name="submit_btn">Submit</string>
-    <string name="or_continue">OR Continue with</string>
-    <string name="no_account">Create An Account</string>
-    <string name="sign_up">Sign Up</string>
     <string name="have_account">I Already Have an Account</string>
     <string name="login_link">Login</string>
-    <string name="register_agree">By clicking the Register button, you agree to the public offer</string>
     <string name="forgot_hint">* We will send you a message to set or reset your new password</string>
     <string name="register_terms">By clicking the \<b>\<font color="#E8445A">Register\</font>\</b> button, you agree to the public offer\</string>
 </resources>

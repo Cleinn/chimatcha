@@ -35,7 +35,6 @@ public class ProductActivity extends AppCompatActivity {
         LinearLayout menuBranch = findViewById(R.id.menuBranch);
         LinearLayout menuLogout = findViewById(R.id.menuLogout);
 
-        // Toggle dropdown on hamburger click
         hamburgerButton.setOnClickListener(v -> {
             if (isDropdownOpen) {
                 closeDropdown();
@@ -44,7 +43,6 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
 
-        // Home
         menuHome.setOnClickListener(v -> {
             closeDropdown();
             Intent intent = new Intent(this, HomeActivity.class);
@@ -52,21 +50,18 @@ public class ProductActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Items
         menuItems.setOnClickListener(v -> {
             closeDropdown();
             Intent intent = new Intent(this, ProductActivity.class);
             startActivity(intent);
         });
 
-        // Branch
         menuBranch.setOnClickListener(v -> {
             closeDropdown();
             Intent intent = new Intent(this, BranchActivity.class);
             startActivity(intent);
         });
 
-        // Log Out
         menuLogout.setOnClickListener(v -> {
             closeDropdown();
             AppGlobals.loggedInUsername = "";
@@ -76,7 +71,6 @@ public class ProductActivity extends AppCompatActivity {
             finish();
         });
 
-        // Close dropdown when touching outside of it
         View rootView = findViewById(android.R.id.content);
         rootView.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN && isDropdownOpen) {
@@ -168,7 +162,6 @@ public class ProductActivity extends AppCompatActivity {
 
     private void setupRecycler() {
         RecyclerView recyclerView = findViewById(R.id.productRecycler);
-        // 2-column grid
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         List<Product> products = new ArrayList<>();
